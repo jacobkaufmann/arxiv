@@ -43,12 +43,10 @@ func NewClient(httpClient *http.Client) *Client {
 // QueryOptions specifies general pagination options for fetching a list of
 // results.
 type QueryOptions struct {
-	MaxResults int      `url:"max_results,omitempty"`
-	Start      int      `url:"start,omitempty"`
-	SortBy     string   `url:"sortBy,omitempty"`
-	SortOrder  string   `url:"sortOrder,omitempty"`
-	Search     string   `url:"search_query,omitempty"`
-	IDList     []string `url:"id_list,omitempty,comma"`
+	MaxResults int    `url:"max_results,omitempty"`
+	Start      int    `url:"start,omitempty"`
+	SortBy     string `url:"sortBy,omitempty"`
+	SortOrder  string `url:"sortOrder,omitempty"`
 }
 
 // DefaultMaxResults is the default number of items to return for a query

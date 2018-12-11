@@ -52,13 +52,20 @@ type Eprint struct {
 // EprintsService interacts with the e-print-related endpoints on arXiv's API
 type EprintsService interface {
 	Get(id string) (*Eprint, error)
-	List(opt *QueryOptions) ([]*Eprint, error)
+	List(opt *EprintListOptions) ([]*Eprint, error)
 }
 
 var (
 	// ErrEprintNotFound is a failure to find a specified e-print
 	ErrEprintNotFound = errors.New("e-print not found")
 )
+
+// EprintListOptions specify how to retrieve a list of e-prints from the arXiv API
+type EprintListOptions struct {
+	Search string   `url:"search_query,omitempty"`
+	IDList []string `url:"id_list,omitempty,comma"`
+	QueryOptions
+}
 
 // A SearchOptions is a search query configuration
 type SearchOptions struct {
@@ -99,7 +106,7 @@ func (opt SearchOptions) String() string {
 type eprintsService struct{ client *Client }
 
 func (s *eprintsService) Get(id string) (*Eprint, error) {
-	opt := &QueryOptions{}
+	opt := &EprintListOptions{}
 	opt.IDList = append(opt.IDList, id)
 
 	url, err := s.client.url("query", opt)
@@ -128,7 +135,7 @@ func (s *eprintsService) Get(id string) (*Eprint, error) {
 	return eprint, nil
 }
 
-func (s *eprintsService) List(opt *QueryOptions) ([]*Eprint, error) {
+func (s *eprintsService) List(opt *EprintListOptions) ([]*Eprint, error) {
 	url, err := s.client.url("query", opt)
 	if err != nil {
 		return nil, err
