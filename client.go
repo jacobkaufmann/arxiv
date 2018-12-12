@@ -58,7 +58,7 @@ func (o QueryOptions) MaxResultsOrDefault() int {
 }
 
 // DefaultMaxResults is the default number of items to return for a query
-const DefaultMaxResults = 100
+const DefaultMaxResults = 1000
 
 // StartOrDefault ensures a valid start is set
 func (o QueryOptions) StartOrDefault() int {
