@@ -5,11 +5,12 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"time"
 
 	"golang.org/x/tools/blog/atom"
 )
 
-// An EprintFeed is a feed retrieved from the arXiv API
+// An EprintsFeed is a feed retrieved from the arXiv API
 type EprintsFeed struct {
 	XMLName xml.Name    `xml:"http://www.w3.org/2005/Atom feed"`
 	Title   string      `xml:"title"`
@@ -44,8 +45,8 @@ type Eprint struct {
 	Authors    []Author   `xml:"author"`
 	Links      []Link     `xml:"link"`
 	Categories []Category `xml:"category"`
-	Published  string     `xml:"published"`
-	Updated    string     `xml:"updated"`
+	Published  time.Time  `xml:"published"`
+	Updated    time.Time  `xml:"updated"`
 	Abstract   string     `xml:"summary"`
 }
 
