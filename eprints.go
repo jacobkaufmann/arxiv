@@ -49,6 +49,15 @@ type Eprint struct {
 	Abstract   string     `xml:"summary"`
 }
 
+func (e *Eprint) String() string {
+	auths := []string{}
+	for i := 0; i < len(e.Authors); i++ {
+		auths = append(auths, e.Authors[i].Name)
+	}
+	s := fmt.Sprintf("Title: %s\n\nAuthors: %s\n\nAbstract: %s", e.Title, strings.Join(auths, ", "), e.Abstract)
+	return s
+}
+
 // EprintsService interacts with the e-print-related endpoints on arXiv's API
 type EprintsService interface {
 	Get(id string) (*Eprint, error)
