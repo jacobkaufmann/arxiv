@@ -49,8 +49,48 @@ type QueryOptions struct {
 	SortOrder  string `url:"sortOrder,omitempty"`
 }
 
+// MaxResultsOrDefault ensures at least one result is requested
+func (o QueryOptions) MaxResultsOrDefault() int {
+	if o.MaxResults < 1 {
+		return DefaultMaxResults
+	}
+	return o.MaxResults
+}
+
 // DefaultMaxResults is the default number of items to return for a query
 const DefaultMaxResults = 100
+
+// StartOrDefault ensures a valid start is set
+func (o QueryOptions) StartOrDefault() int {
+	if o.Start < 0 {
+		return 0
+	}
+	return o.Start
+}
+
+// SortByOrDefault ensures a valid sort method is specified
+func (o QueryOptions) SortByOrDefault() string {
+	by := o.SortBy
+	if by != "relevance" && by != "lastUpdatedDate" && by != "submittedDate" {
+		return DefaultSortBy
+	}
+	return by
+}
+
+// DefaultSortBy is the default way to sort the items in the API response
+const DefaultSortBy = "relevance"
+
+// SortOrderOrDefault ensures a valid sort order is specified
+func (o QueryOptions) SortOrderOrDefault() string {
+	order := o.SortOrder
+	if order != "descending" && order != "ascending" {
+		return DefaultSortOrder
+	}
+	return order
+}
+
+// DefaultSortOrder is the default sort order for the items in the API response
+const DefaultSortOrder = "descending"
 
 // url generates the URL to the named thesrc API endpoint, using the
 // specified route variables and query options.
