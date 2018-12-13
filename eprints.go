@@ -124,13 +124,13 @@ func (s *eprintsService) Get(id string) (*Eprint, error) {
 		return nil, err
 	}
 
-	req, err := s.client.NewRequest("GET", url.String(), nil)
+	req, err := s.client.newRequest("GET", url.String(), nil)
 	if err != nil {
 		return nil, err
 	}
 
 	feed := EprintsFeed{}
-	_, err = s.client.Do(req, &feed)
+	_, err = s.client.do(req, &feed)
 	if err != nil {
 		return nil, err
 	}
@@ -153,13 +153,13 @@ func (s *eprintsService) List(opt *EprintListOptions) ([]*Eprint, error) {
 
 	fmt.Printf("URL: %s\n", url.String())
 
-	req, err := s.client.NewRequest("GET", url.String(), nil)
+	req, err := s.client.newRequest("GET", url.String(), nil)
 	if err != nil {
 		return nil, err
 	}
 
 	feed := EprintsFeed{}
-	_, err = s.client.Do(req, &feed)
+	_, err = s.client.do(req, &feed)
 	if err != nil {
 		return nil, err
 	}
