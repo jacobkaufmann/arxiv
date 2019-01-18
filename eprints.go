@@ -171,3 +171,51 @@ func (s *eprintsService) List(opt *EprintListOptions) ([]*Eprint, error) {
 
 	return eprints, nil
 }
+
+// Subjects holds available e-print subjects
+var Subjects = map[string]string{
+	"physics": "Physics",
+	"math":    "Mathematics",
+	"cs":      "Computer Science",
+	"q-bio":   "Quantitative Biology",
+	"q-fin":   "Quantitative Finance",
+	"stat":    "Statistics",
+	"eess":    "Electrical Engineering and Systems Science",
+	"econ":    "Economics",
+}
+
+// Subcategories holds e-print subcategories by subject
+var Subcategories = map[string][]string{
+	"physics": []string{
+		"acc-ph", "ao-ph", "app-ph", "atm-clus", "atom-ph", "bio-ph", "chem-ph",
+		"class-ph", "comp-ph", "data-an", "ed-ph", "flu-dyn", "gen-ph", "geo-ph",
+		"hist-ph", "ins-det", "med-ph", "optics", "plasm-ph", "pop-ph", "soc-ph",
+		"space-ph",
+	},
+	"math": []string{
+		"AC", "AG", "AP", "AT", "CA", "CO", "CT", "CV", "DG", "DS", "FA", "GM",
+		"GN", "GR", "GT", "HO", "IT", "KT", "LO", "MG", "MP", "NA", "NT", "OA",
+		"OC", "PR", "QA", "RA", "RT", "SG", "SP", "ST",
+	},
+	"cs": []string{
+		"AI", "AR", "CC", "CE", "CG", "CL", "CR", "CV", "CY", "DB", "DC", "DL",
+		"DM", "DS", "ET", "FL", "GL", "GR", "GT", "HC", "IR", "IT", "LG", "LO",
+		"MA", "MM", "MS", "NA", "NE", "NI", "OH", "OS", "PF", "PL", "RO", "SC",
+		"SD", "SE", "SI", "SY",
+	},
+	"q-bio": []string{
+		"BM", "CB", "GN", "MN", "NC", "OT", "PE", "QM", "SC", "TO",
+	},
+	"q-fin": []string{
+		"CP", "EC", "GN", "MF", "PM", "PR", "RM", "ST", "TR",
+	},
+	"stat": []string{
+		"AP", "CO", "ME", "ML", "OT", "TH",
+	},
+	"eess": []string{
+		"AS", "IV", "SP",
+	},
+	"econ": []string{
+		"EM",
+	},
+}
