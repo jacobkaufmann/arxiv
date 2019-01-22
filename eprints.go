@@ -151,8 +151,6 @@ func (s *eprintsService) List(opt *EprintListOptions) ([]*Eprint, error) {
 		return nil, err
 	}
 
-	fmt.Printf("URL: %s\n", url.String())
-
 	req, err := s.client.newRequest("GET", url.String(), nil)
 	if err != nil {
 		return nil, err
